@@ -22,7 +22,7 @@ await data.slice([0], [10]).forEach((item, i) => {
 	foundData.push(item.url)
 })
 
-await foundData.forEach((item) => {
+foundData.forEach((item) => {
 		https.get(item,(res) => { 
 			const fileName = `0${count++}.png`;
 			const filePath = fs.createWriteStream(`${path}/${fileName}`); 
