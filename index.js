@@ -4,6 +4,7 @@ import https from 'https';
 
 const path = './memes';
 const link = 'https://api.memegen.link/images/';
+const memeNumber = 10;
 const foundData = [];
 
 async function mkdir (dir) {
@@ -16,15 +17,20 @@ async function mkdir (dir) {
 }
 
 const processFetchedImage = async (data) => {
-let count = '01';
+let count = 1;
 
-await data.slice([0], [10]).forEach((item, i) => {
+await data.slice([0], [memeNumber]).forEach((item, i) => {
 	foundData.push(item.url);
 });
 
 foundData.forEach((item) => {
 		https.get(item,(res) => { 
-			const fileName = `0${count++}.png`;
+			let fileName;
+
+			if(count > 9) {
+			fileName = `${count++}.png`;
+			} else fileName = `0${count++}.png`;
+
 			const filePath = fs.createWriteStream(path + '/' + fileName); 
 			res.pipe(filePath); 
 			filePath.on('finish',() => { 
