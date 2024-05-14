@@ -31,9 +31,9 @@ const processFetchedImage = async (data) => {
       let fileName;
 
       if (count > 9) {
-        fileName = `${count++}.png`;
+        fileName = `${count++}.jpg`;
       } else {
-        fileName = `0${count++}.png`;
+        fileName = `0${count++}.jpg`;
       }
 
       const filePath = fs.createWriteStream(path + '/' + fileName);
