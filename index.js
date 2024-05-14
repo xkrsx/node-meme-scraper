@@ -58,5 +58,5 @@ const fetchImages = async () => {
   }
 };
 
-fetchImages().then();
-mkdir(path);
+await fetchImages();
+await mkdir(path);
